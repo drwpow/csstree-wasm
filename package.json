@@ -1,0 +1,39 @@
+{
+  "name": "csstree-wasm-monorepo",
+  "private": true,
+  "version": "0.0.0",
+  "description": "A tool set for CSS: fast detailed parser (CSS → AST), walker (AST traversal), generator (AST → CSS) and lexer (validation and matching) based on specs and browser implementations",
+  "type": "module",
+  "author": {
+    "name": "Drew Powers",
+    "email": "drew@pow.rs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+github.com:drewpowers/csstree-wasm.git"
+  },
+  "keywords": [
+    "css",
+    "ast",
+    "tokenizer",
+    "parser",
+    "walker",
+    "lexer",
+    "generator",
+    "utils",
+    "syntax",
+    "validation"
+  ],
+  "license": "MIT",
+  "main": "./csstree_wasm.js",
+  "scripts": {
+    "lint": "dprint check",
+    "fmt": "dprint fmt"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.0.0-beta.1",
+    "@types/node": "^22.15.3",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.2"
+  }
+}

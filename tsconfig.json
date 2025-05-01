@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "erasableSyntaxOnly": true,
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "target": "ESNext",
+    "verbatimModuleSyntax": true
+  },
+  "include": ["tests"]
+}
