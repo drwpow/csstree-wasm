@@ -1,4 +1,4 @@
-use crate::tokenizer::TOKEN_TYPE;
+use crate::tokenizer::TokenType;
 use crate::tokenizer::utils::cmp_str;
 use std::cmp;
 
@@ -8,22 +8,22 @@ const BLOCK_OPEN_TOKEN: u8 = 1;
 const BLOCK_CLOSE_TOKEN: u8 = 2;
 const BALANCE_PAIR: [u8; 32] = {
     let mut balance_pair = [0; 32]; // 32b of memory ought to be enough for anyone (any number of tokens)
-    balance_pair[TOKEN_TYPE.Function] = TOKEN_TYPE.RightParenthesis;
-    balance_pair[TOKEN_TYPE.LeftParenthesis] = TOKEN_TYPE.RightParenthesis;
-    balance_pair[TOKEN_TYPE.LeftSquareBracket] = TOKEN_TYPE.RightSquareBracket;
-    balance_pair[TOKEN_TYPE.LeftCurlyBracket] = TOKEN_TYPE.RightCurlyBracket;
+    balance_pair[TokenType::Function] = TokenType::RightParenthesis;
+    balance_pair[TokenType::LeftParenthesis] = TokenType::RightParenthesis;
+    balance_pair[TokenType::LeftSquareBracket] = TokenType::RightSquareBracket;
+    balance_pair[TokenType::LeftCurlyBracket] = TokenType::RightCurlyBracket;
     balance_pair
 };
 
 const BLOCK_TOKENS: [u8; 32] = {
     let mut block_tokens = [0; 32];
-    block_tokens[TOKEN_TYPE.Function] = BLOCK_OPEN_TOKEN;
-    block_tokens[TOKEN_TYPE.LeftParenthesis] = BLOCK_OPEN_TOKEN;
-    block_tokens[TOKEN_TYPE.LeftSquareBracket] = BLOCK_OPEN_TOKEN;
-    block_tokens[TOKEN_TYPE.LeftCurlyBracket] = BLOCK_OPEN_TOKEN;
-    block_tokens[TOKEN_TYPE.RightParenthesis] = BLOCK_CLOSE_TOKEN;
-    block_tokens[TOKEN_TYPE.RightSquareBracket] = BLOCK_CLOSE_TOKEN;
-    block_tokens[TOKEN_TYPE.RightCurlyBracket] = BLOCK_CLOSE_TOKEN;
+    block_tokens[TokenType::Function] = BLOCK_OPEN_TOKEN;
+    block_tokens[TokenType::LeftParenthesis] = BLOCK_OPEN_TOKEN;
+    block_tokens[TokenType::LeftSquareBracket] = BLOCK_OPEN_TOKEN;
+    block_tokens[TokenType::LeftCurlyBracket] = BLOCK_OPEN_TOKEN;
+    block_tokens[TokenType::RightParenthesis] = BLOCK_CLOSE_TOKEN;
+    block_tokens[TokenType::RightSquareBracket] = BLOCK_CLOSE_TOKEN;
+    block_tokens[TokenType::RightCurlyBracket] = BLOCK_CLOSE_TOKEN;
     block_tokens
 };
 
@@ -167,7 +167,7 @@ impl TokenStream {
         while (offset < self.token_count) {
             let token_type = self.offset_and_type[offset] >> TYPE_SHIFT;
 
-            if (token_type != TOKEN_TYPE.WhiteSpace && token_type != TOKEN_TYPE.Comment) {
+            if (token_type != TokenType::WhiteSpace && token_type != TokenType::Comment) {
                 if (idx - 1 == 0) {
                     return token_type;
                 }
@@ -322,7 +322,7 @@ impl TokenStream {
     }
 
     pub fn skip_sc(&self) -> void {
-        while (self.token_type == TOKEN_TYPE.WhiteSpace || self.token_type == TOKEN_TYPE.Comment) {
+        while (self.token_type == TokenType::WhiteSpace || self.token_type == TokenType::Comment) {
             self.next();
         }
     }

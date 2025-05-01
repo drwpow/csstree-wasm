@@ -1,5 +1,5 @@
-use crate::lexer::tokenizer::{Token, TokenType};
 use crate::lexer::utils::{cmp_char, is_digit};
+use crate::tokenizer::{Token, TokenType};
 
 const PLUS_SIGN: u8 = b'+';
 const HYPHEN_MINUS: u8 = b'-';
