@@ -79,11 +79,13 @@ impl OffsetToLocation {
         LocationRange {
             source: filename.to_string(),
             start: Location {
+                source: None,
                 offset: self.start_offset + start,
                 line: self.lines[start],
                 column: self.columns[start],
             },
             end: Location {
+                source: None,
                 offset: self.start_offset + end,
                 line: self.lines[end],
                 column: self.columns[end],
@@ -94,18 +96,17 @@ impl OffsetToLocation {
     fn compute_lines_and_columns(&mut self) {
         let source = self.source.as_bytes();
         let source_length = source.len();
-        let start_offset = if source_length > 0 && is_bom(source[0] as u32) {
-            1
-        } else {
-            0
-        };
+        let mut start_offset: usize = 0;
+        if source_length > 0 && is_bom(source[0] as u32) {
+            start_offset = 1
+        }
         self.lines = vec![0; source_length + 1];
         self.columns = vec![0; source_length + 1];
         let mut line = self.start_line;
         let mut column = self.start_column;
 
         for i in start_offset..source_length {
-            let code = source[i] as u32;
+            let code: u8 = source[i];
 
             self.lines[i] = line;
             self.columns[i] = column;
@@ -132,7 +133,7 @@ impl OffsetToLocation {
 
 #[derive(Debug)]
 pub struct Location {
-    pub source: String,
+    pub source: Option<String>,
     pub offset: usize,
     pub line: usize,
     pub column: usize,

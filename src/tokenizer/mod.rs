@@ -1,3 +1,10 @@
+pub mod adopt_buffer;
+pub mod char_code_definitions;
+pub mod offset_to_location;
+pub mod token_stream;
+pub mod types;
+pub mod utils;
+
 use crate::tokenizer::char_code_definitions::{
     DIGIT_CATEGORY, NAME_START_CATEGORY, NON_PRINTABLE_CATEGORY, WHITE_SPACE_CATEGORY,
     char_code_category, is_bom, is_identifier_start, is_name, is_newline, is_number_start,

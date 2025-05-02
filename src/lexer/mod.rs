@@ -1,5 +1,11 @@
 use std::collections::HashMap;
 
+pub mod generic;
+pub mod generic_an_plus_b;
+pub mod generic_const;
+pub mod generic_urange;
+pub mod units;
+
 #[derive(Debug)]
 pub struct Lexer {
     // Define fields similar to the properties in the JavaScript class
