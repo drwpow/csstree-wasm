@@ -5,6 +5,7 @@
     "moduleResolution": "NodeNext",
     "strict": true,
     "target": "ESNext",
+    "types": ["node", "vitest"],
     "verbatimModuleSyntax": true
   },
   "include": ["tests"]
