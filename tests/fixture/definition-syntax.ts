@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
-import { createLexer, lexer as defaultLexer } from "../pkg/csstree_wasm.js";
 import { JsonLocator } from "../helpers/JsonLocator.js";
+import { createLexer, lexer as defaultLexer } from "../pkg/csstree_wasm.js";
 
 const __dirname = "fixtures/definition-syntax";
 
@@ -59,9 +59,11 @@ export function forEachAtrulePreludeTest(factory) {
 export function forEachAtruleDescriptorTest(factory) {
   for (const [atruleName, testset] of Object.entries(atruleTests)) {
     if (testset.descriptors) {
-      for (const [descriptorName, test] of Object.entries(
-        testset.descriptors,
-      )) {
+      for (
+        const [descriptorName, test] of Object.entries(
+          testset.descriptors,
+        )
+      ) {
         for (const field of Object.keys(test)) {
           if (field !== "valid" && field !== "invalid") {
             continue;
@@ -84,7 +86,7 @@ export function forEachAtruleDescriptorTest(factory) {
   }
 }
 
-export const tests = fs.readdirSync(__dirname).reduce(function (result, fn) {
+export const tests = fs.readdirSync(__dirname).reduce(function(result, fn) {
   if (path.extname(fn) === ".json" && fn !== "atrules.json") {
     const filename = path.join(__dirname, fn);
     const tests = JSON.parse(fs.readFileSync(filename));
